@@ -1,0 +1,89 @@
+﻿/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+  font-family: "Courgette";
+  src: local("Courgette"), url(./assets/fonts/Courgette-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Drift";
+  src: local("Drift"), url(./assets/fonts/Drift___.ttf) format("truetype");
+}
+
+button{
+  border-width: 0ch;
+  border-radius: 10px;
+  min-height: 40px;
+  min-width: 100px;
+  margin: 10px;
+  font-family: "Courgette","Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+button:enabled{
+  color:#424242;
+  filter: drop-shadow(0px 3px 2px #6b6b6b8f);
+  background-image: linear-gradient(180deg, #f1ece5,#f1ece5,#f1ece5,#cac4bb,#969696);
+}
+
+button:disabled{
+  filter: drop-shadow(0px 3px 2px #6b6b6b3a);
+  background-image: linear-gradient(180deg, #c4c2be80,#c4c2be80,#c4c2be80,#afaba4b4,#9e9b95b4);
+}
+
+button:active{
+  color:whitesmoke;
+  background-image: linear-gradient(180deg, #bbbbbb,#bbbbbb,#bbbbbb,#7a7a7a,#424242);
+}
+
+::ng-deep .context-menu{
+  border-radius: 5000px;
+}
+
+textarea{
+  z-index:1;
+  margin: 10px;
+  border-width: 0ch;
+  border-radius: 10px;
+  border: 1px solid #e2dac1;
+  box-shadow: inset 0px 1px 8px rgba(63, 61, 50, 0.2);
+  font-family: "Courgette","Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input{
+  z-index:1;
+  margin: 10px;
+  border-width: 0ch;
+  border-radius: 10px;
+  border: 1px solid #e2dac1;
+  box-shadow: inset 0px 1px 8px rgba(63, 61, 50, 0.2);
+  font-family: "Courgette","Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+textarea:focus{
+  outline: none;
+}
+
+input:focus{
+  outline: none;
+}
+
+p{
+  font-family: "Courgette","Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header{
+  background-image: linear-gradient(180deg, #bbbbbb13,#bbbbbb18,#b6a38723,#807a6a38,#42424200);
+}
+
+.primary-button:enabled{
+  color: teal;
+  font-weight: bold;
+  outline-style: solid;
+  border-style: solid;
+  outline-color: teal;
+  outline-width: 2px;
+}
