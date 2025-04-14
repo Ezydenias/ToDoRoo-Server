@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+    <fontFamily name="Courgette">
+        <!-- Normal Arial Font -->
+        <normal>
+            <![CDATA[fonts/Courgette/Courgette.ttf]]></normal> <!-- location of the nornal font on resource folder -->
+        <!-- Bold Arial Font -->
+        <bold><![CDATA[fonts/Courgette/Courgette.ttf]]></bold>
+        <!-- Italic Arial Font -->
+        <italic><![CDATA[fonts/Courgette/Courgette.ttf]]></italic>
+        <!-- Bolt italic Arial Font -->
+        <boldItalic><![CDATA[fonts/Courgette/Courgette.ttf]]></boldItalic>
+        <!-- Is font is embedded in PDF -->
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+    <fontFamily name="Drift">
+        <!-- Normal Arial Font -->
+        <normal>
+            <![CDATA[fonts/Drift/Drift.ttf]]></normal> <!-- location of the nornal font on resource folder -->
+        <!-- Bold Arial Font -->
+        <bold><![CDATA[fonts/Drift/Drift.ttf]]></bold>
+        <!-- Italic Arial Font -->
+        <italic><![CDATA[fonts/Drift/Drift.ttf]]></italic>
+        <!-- Bolt italic Arial Font -->
+        <boldItalic><![CDATA[fonts/Drift/Drift.ttf]]></boldItalic>
+        <!-- Is font is embedded in PDF -->
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+</fontFamilies>

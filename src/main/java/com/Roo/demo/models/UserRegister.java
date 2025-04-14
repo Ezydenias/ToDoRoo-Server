@@ -1,21 +1,19 @@
 package com.Roo.demo.models;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Roo2Example {
+public class UserRegister {
     @Id
-    Long id;
-
-    String name;
-    
-    
+    private int id;
+    private String username;
+    private String password;
+    private String repeatpassword;
+    private String email;
 }

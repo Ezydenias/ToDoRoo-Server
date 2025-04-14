@@ -15,6 +15,14 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private String email;
+
+    public User(UserRegister user) {
+        id = user.getId();
+        username = user.getUsername();
+        password = user.getPassword();
+        email = user.getEmail();
+    }
 
     @Override
     public String toString() {
