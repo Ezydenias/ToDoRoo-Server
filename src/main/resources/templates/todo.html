@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Welcome to ToDo Roo</title>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+<body class="todoroo-body">
+<h1>Welcome!</h1>
+
+
+<form th:action="@{logoutPage}" method="get">
+    <button type="submit">
+        Logout
+    </button>
+</form>
+
+<div style="padding-left: 10px;" th:each="todo : ${todos}">
+<!--    <span th:text="${todo.todo}">Default</span>-->
+<th:block th:replace="~{fragments/todoelement :: todoelement}">  </th:block>
+</div>
+
+<span th:if="${edit!= null}">
+<th:block  th:replace="~{fragments/editTodoElement :: edittodo}">  </th:block>
+</span>
+
+
+</body>
+</html>

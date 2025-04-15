@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ToDo {
+public class Todo {
     @Id
-    Long id;
+    int id;
 
     String todo;
     

@@ -63,6 +63,49 @@ margin-top: 0px;
       background-size: 130%;
 }
 
+.todo-roo-box{
+display: block;
+background-color: #fffcf3;
+margin: 10px;
+  width: 200px;
+  min-height: 50px;
+  border-radius:  10px;
+  box-shadow: 0px 1px 8px rgba(63, 61, 50, 0.2);
+  background-image: linear-gradient(180deg, #bbbbbb13,#bbbbbb18,#b6a38723,#807a6a38,#42424200);
+}
+
+.todo-roo-box-disabled{
+display: block;
+background-color: #fffcf3;
+margin: 10px;
+  width: 200px;
+  min-height: 50px;
+  border-radius:  10px;
+  box-shadow: 0px 1px 8px rgba(63, 61, 50, 0.2);
+  background-image: linear-gradient(180deg, #c4c2be80,#c4c2be80,#c4c2be80,#afaba4b4,#9e9b95b4);
+}
+
+.todo-roo-image{
+  background-image: url("/imgs/kangaroo_standing.svg");
+  min-height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: -100px;
+      background-position-y: 30px;
+      background-size: 130%;
+        opacity: 50%;
+}
+
+.overlay{
+position: absolute;
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  background-color: #F6EEBC99;
+  }
+
 button:enabled{
   color:#424242;
   filter: drop-shadow(0px 3px 2px #6b6b6b8f);

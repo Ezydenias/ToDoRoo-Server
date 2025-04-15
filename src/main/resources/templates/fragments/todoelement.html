@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+
+    <label class="todo-roo-box" th:attr="class=${todo.done ? 'todo-roo-box-disabled' : 'todo-roo-box'}" th:fragment="todoelement">
+<form th:action="@{toggleTodo}" method="post" th:object="${todo}"   >
+          
+
+        <button type="submit" name="todoId" th:value="${todo.id}" th:field="${todo}" style="display: none"></button>
+        <div class="todo-roo-image" id="yourTodo" th:value="${todo}">
+            <div style=" padding: 10px;">
+                <div th:text="${todo.todo}">Default</div>
+
+            </div>
+        </div>
+</form>
+        <form th:action="@{editTodo}" method="post" th:object="${todo}" th:value="${todo.id}"  >
+            <button type="submit" name="todoId" th:value="${todo.id}" th:field="${todo}" ></button>
+        </form>
+    </label>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.Roo.demo.controller;
 
+import com.Roo.demo.exceptions.RegisterException;
 import com.Roo.demo.models.User;
 import com.Roo.demo.models.UserRegister;
 import com.Roo.demo.service.UserService;
@@ -16,13 +17,12 @@ public class UserController {
     
     @Autowired
     private UserService service;
-
     
     @PostMapping(value = "/register")
     public ModelAndView register(@ModelAttribute UserRegister user, Model model) throws Exception {
         try {
-        var temp = service.register(user);
-        }catch (Exception e){
+        service.register(user);
+        }catch (RegisterException e){
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("register.html");
             model.addAttribute("errorMessage", e.getMessage());

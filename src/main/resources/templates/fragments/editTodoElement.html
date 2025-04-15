@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+<div th:fragment="edittodo" class="overlay">
+
+    <div class="login-box">
+        <div class="login-roo">
+
+            <div style="padding: 20px;">
+                <h1 class="todoroo-header">What to Remember?!</h1>
+
+                <form th:action="@{/saveTodo}" method="post" th:object="${Todo}">
+                    
+                    
+                    <div class="todo-inputfield">
+                        <input type="text" id="todo" name="todo" class="form-control" placeholder="Todo" th:value="${editedTodo.todo}"
+                               required autofocus="autofocus">
+                    </div>
+   
+                    <div>
+                        <button type="submit" value="Register" name="todoId" th:value="${editedTodo.id}" th:field="${todoId}">Save</button>
+                    </div>
+
+                </form>
+                <div class="register-btn">
+                    <form th:action="@{todo}" method="get">
+                        <button type="submit">
+                            Back
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            </form>
+        </div>
+</div>
