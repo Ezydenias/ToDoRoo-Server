@@ -4,8 +4,10 @@ import com.Roo.demo.exceptions.RegisterException;
 import com.Roo.demo.models.User;
 import com.Roo.demo.models.UserRegister;
 import com.Roo.demo.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.mapping.Any;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.expression.spel.ast.StringLiteral;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +21,14 @@ public class UserController {
     private UserService service;
     
     @PostMapping(value = "/register")
-    public ModelAndView register(@ModelAttribute UserRegister user, Model model) throws Exception {
+    public ModelAndView register(@ModelAttribute UserRegister user, Model model, HttpServletRequest request) throws Exception {
         try {
         service.register(user);
         }catch (RegisterException e){
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("register.html");
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("nonce", request.getAttribute("nonce"));
             return modelAndView;
         }
         
@@ -38,9 +41,10 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ModelAndView login() {
+    public ModelAndView login(Model model, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login.html");
+        model.addAttribute("nonce", request.getAttribute("nonce"));
         return modelAndView;
     }
 

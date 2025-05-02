@@ -18,6 +18,7 @@ button{
 }
 
 .todoroo-body{
+    word-break: break-word;
   display: table;
   position: absolute;
   top: 0;
@@ -46,6 +47,19 @@ background-color: #fffcf3;
   margin: auto;
 }
 
+.todo-edit-box{
+  background-color: #fffcf3;
+  width: 400px;
+  border-radius:  10px;
+  box-shadow: 0px 1px 8px rgba(63, 61, 50, 0.2);
+  background-image: linear-gradient(180deg, #bbbbbb13,#bbbbbb18,#b6a38723,#807a6a38,#42424200);
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
 .todoroo-header{
 margin-top: 0px;
   text-align: center;
@@ -61,6 +75,18 @@ margin-top: 0px;
     background-position-x: -100px;
       background-position-y: 30px;
       background-size: 130%;
+}
+
+.todo-roo-header{
+display: table-caption;
+  padding:30px;
+  text-align: center;
+  font-size: 30px;
+  background-image: linear-gradient(180deg, #bbbbbb13,#bbbbbb18,#b6a38723,#807a6a38,#42424200);
+  hight: 30px;
+  height: 40px;
+  position: absolute;
+  width: 100%;
 }
 
 .todo-roo-box{
@@ -104,6 +130,14 @@ position: absolute;
   top: 0;
   left: 0;
   background-color: #F6EEBC99;
+  }
+  
+  .grid-todo{
+    display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 100px;
   }
 
 button:enabled{

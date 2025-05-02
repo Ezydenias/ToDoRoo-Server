@@ -1,11 +1,16 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Login to ToDo Roo</title>
     <link th:href="@{/main.css}" rel="stylesheet"/>
+<!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self';  script-src  'self' 'nonce-static' localhost:8080">-->
 </head>
-<body class="todoroo-body">
-
+<body  nonce="static" class="todoroo-body" onload="test3()">
+<script language="text/javascript" nonce="static">function test3(){console.log("this should work")}</script>
+<!--<body class="todoroo-body" >-->
+<script>function test(){console.log("this shouldn't work")}</script>
+<!--<script language="javascript" th:nonce="${nonce}">function test2(){console.log("this should work")}</script>-->
+<h2 th:nonce="${nonce}" th:text="${nonce}" align="center"></h2>
 <div class="login-page">
     <div class="login-box">
         <div class="login-roo">
@@ -16,7 +21,8 @@
                 <form th:action="@{login}" method="post">
 
                     <h4 style="padding-left: 10px;">Sign into to remember like a Wallaroo!.</h4>
-                    <div style="padding-left: 10px;" th:if="${param.error}" class="alert alert-error">Invalid usernam or
+                    <div style="padding-left: 10px;" th:if="${param.error}" class="alert alert-error">Invalid username
+                        or
                         password.
                     </div>
                     <div style="padding-left: 10px;" th:if="${param.logout}" class="alert alert-success">You have been
@@ -32,12 +38,12 @@
                                placeholder="Password">
                     </div>
 
-                    <div style="display: flex">
-                        <div style="flex: 1;">
-                            <button type="submit" value="LogIn">Login</button>
-                        </div>
+<!--                    <div style="display: flex">-->
+<!--                        <div style="flex: 1;">-->
+<!--                            <button type="submit" value="LogIn">Login</button>-->
+<!--                        </div>-->
 
-                    </div>
+<!--                    </div>-->
                 </form>
                 <div class="register-btn">
                     <form th:action="@{registerPage}" method="get">
@@ -50,8 +56,6 @@
 
         </div>
     </div>
-</div>
-</div>
 </div>
 </body>
 </html>

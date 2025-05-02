@@ -13,6 +13,11 @@ public class TodoController {
     @Autowired
     private ToDoService service;
 
+    @GetMapping("/")
+    public ModelAndView greet(Model model) {
+        return todo(model);
+    }
+
     @GetMapping("/todo")
     public ModelAndView todo(Model model) {
         model.addAttribute("todos", service.loadTodos());
@@ -45,14 +50,17 @@ public class TodoController {
     public ModelAndView createTodo(Model model) {
         var view = todo(model);
         model.addAttribute("edit", true);
+        model.addAttribute("editedTodo", new Todo());
         return view;
     }
 
     @PostMapping("/saveTodo")
-    public ModelAndView editTodo(@ModelAttribute Todo todo, @RequestParam(name = "todoId") String todoId, Model model) {
-        todo.setDone(false);
-        todo.setId(Integer.parseInt(todoId));
-        service.save(todo);
+    public ModelAndView saveTodo(@RequestParam(name = "todo") String todo, @RequestParam(name = "todoId") String todoId, Model model) {
+        var todoItem = new Todo();
+        todoItem.setTodo(todo);
+        todoItem.setDone(false);
+        todoItem.setId(Integer.parseInt(todoId));
+        service.save(todoItem);
         return todo(model);
     }
 }

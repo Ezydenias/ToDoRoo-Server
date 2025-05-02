@@ -4,23 +4,26 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <div th:fragment="edittodo" class="overlay">
-
-    <div class="login-box">
+    <div class="todo-edit-box">
         <div class="login-roo">
 
             <div style="padding: 20px;">
                 <h1 class="todoroo-header">What to Remember?!</h1>
 
                 <form th:action="@{/saveTodo}" method="post" th:object="${Todo}">
-                    
-                    
+
+
                     <div class="todo-inputfield">
-                        <input type="text" id="todo" name="todo" class="form-control" placeholder="Todo" th:value="${editedTodo.todo}"
+                        <input type="text" id="todo" name="todo" class="form-control" placeholder="Todo"
+                               th:value="${editedTodo.todo}"
                                required autofocus="autofocus">
                     </div>
-   
+
                     <div>
-                        <button type="submit" value="Register" name="todoId" th:value="${editedTodo.id}" th:field="${todoId}">Save</button>
+                        <button type="submit" value="save" name="todoId" th:value="${editedTodo.id}"
+                                th:field="${todoId}">Save
+                        </button>
+<!--                        <button type="submit" value="Save">Save</button>-->
                     </div>
 
                 </form>
@@ -32,7 +35,7 @@
                     </form>
                 </div>
             </div>
-
-            </form>
         </div>
+
+    </div>
 </div>
