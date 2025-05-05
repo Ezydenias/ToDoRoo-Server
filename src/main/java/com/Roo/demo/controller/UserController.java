@@ -6,6 +6,8 @@ import com.Roo.demo.models.UserRegister;
 import com.Roo.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.mapping.Any;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.expression.spel.ast.StringLiteral;
@@ -19,6 +21,8 @@ public class UserController {
     
     @Autowired
     private UserService service;
+
+    Logger logger = LoggerFactory.getLogger(UserController.class);
     
     @PostMapping(value = "/register")
     public ModelAndView register(@ModelAttribute UserRegister user, Model model, HttpServletRequest request) throws Exception {

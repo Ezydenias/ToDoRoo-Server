@@ -3,6 +3,8 @@ package com.Roo.demo.connfig;
 import com.Roo.demo.filter.CSPFilter;
 import com.Roo.demo.filter.IFrameFilter;
 import com.Roo.demo.filter.JwtFilter;
+import com.Roo.demo.handler.LoginSucessHandler;
+//import com.Roo.demo.manager.CustomAuthenticationManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,6 +32,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    @Autowired
+    LoginSucessHandler successHandler;
+
+//    @Autowired
+//    CustomAuthenticationManager manager;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -54,17 +63,17 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login").permitAll())
-                .httpBasic(withDefaults())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(cspFilter, JwtFilter.class)
-//                .addFilterAfter(iFrameFilter, JwtFilter.class)
+                .addFilterAfter(iFrameFilter, JwtFilter.class)
+//                .authenticationManager(manager)
                 .build();
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(new Pbkdf2PasswordEncoder(pepper,5,2000,256));
+        provider.setPasswordEncoder(new Pbkdf2PasswordEncoder(pepper, 5, 2000, 256));
         provider.setUserDetailsService(userDetailsService);
         return provider;
     }
