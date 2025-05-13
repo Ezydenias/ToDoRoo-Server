@@ -111,6 +111,17 @@ margin: 10px;
   background-image: linear-gradient(180deg, #c4c2be80,#c4c2be80,#c4c2be80,#afaba4b4,#9e9b95b4);
 }
 
+.todo-roo-box-alarm{
+display: block;
+background-color: #fffcf3;
+margin: 10px;
+  width: 200px;
+  min-height: 50px;
+  border-radius:  10px;
+  box-shadow: 0px 1px 8px rgba(63, 61, 50, 0.2);
+  background-image: linear-gradient(180deg, #c4787880,#c4787880,#c4787880,#ae5656b4,#940000b4);
+}
+
 .todo-roo-image{
   background-image: url("/imgs/kangaroo_standing.svg");
   min-height: 100px;
@@ -207,6 +218,8 @@ header{
 .alert-error{
     color: red;
 }
+
+
 
 .register-btn{
 top: 7px;

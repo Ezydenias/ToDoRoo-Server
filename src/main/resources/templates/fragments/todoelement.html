@@ -4,17 +4,22 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 
-<label class="todo-roo-box" th:attr="class=${todo.done ? 'todo-roo-box-disabled' : 'todo-roo-box'}"
+<!--<label class="todo-roo-box" th:attr="class=${todo.done ? 'todo-roo-box-disabled' : 'todo-roo-box'}"-->
+<label class="todo-roo-box" th:attr="class=${todo.done ? 'todo-roo-box-disabled' : (todo.deadline!=null ? (todo.deadline.before(#dates.createNow()) ? 'todo-roo-box-alarm' : 'todo-roo-box') : 'todo-roo-box-alarm')}"
        th:fragment="todoelement">
     <div class="todo-roo-image" id="yourTodo" th:value="${todo}">
-        <form th:action="@{toggleTodo}" method="post" th:object="${todo}">
-            <button type="submit" name="todoId" th:value="${todo.id}" th:field="${todo}" style="display: none"></button>
-            <div style=" padding: 10px;">
+        <form th:action="@{toggleTodo}" th:method="put" th:object="${todo}">
+            <button type="submit" name="todoId" th:value="${todo.id}" th:field="${todo}" class="displaynone"></button>
+            <div class="padding10">
                 <div th:text="${todo.todo}">Default</div>
             </div>
+            <div th:text="${todo.deadline}"></div>
         </form>
         <form th:action="@{editTodo}" method="post" th:object="${todo}" th:value="${todo.id}">
-            <button type="submit" name="todoId" th:value="${todo.id}" th:field="${todo}" style="min-height: 0px; min-width: 0px;">Edit</button>
+            <button type="submit" name="todoId" th:value="${todo.id}" th:field="${todo}" class="minheightwidth0">Edit</button>
+        </form>
+        <form th:if="${todo.done}" th:action="@{deleteTodo}" th:method="delete" th:object="${todo}" th:value="${todo.id}">
+            <button type="submit" name="todoId" th:value="${todo.id}" th:field="${todo}" class="minheightwidth0">Delete</button>
         </form>
     </div>
 </label>

@@ -5,12 +5,21 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body class="todoroo-body">
+<style th:nonce="${nonceStyle}">
+    .padding20 {padding: 20px;}
+    .padding10 {padding: 10px;}
+    .paddingLeft10 {padding: 10px;}
+        .displayflex {display: flex;}
+        .displaynone {display: none;}
+    h1 {flex: auto; margin:0px;}
+    .rubyflexblock {flex:auto; display: block ruby;}
+    .minheightwidth0 {min-height: 0px; min-width: 0px;}
+</style>
 
-
-<th:block th:replace="~{fragments/header :: header}">  </th:block>
+<th:block th:replace="~{fragments/header :: header}"></th:block>
 
 <div class="grid-todo">
-    <div style="padding-left: 10px;" th:each="todo : ${todos}">
+    <div class="paddingLeft10" th:each="todo : ${todos}">
         <!--    <span th:text="${todo.todo}">Default</span>-->
         <th:block th:replace="~{fragments/todoelement :: todoelement}"></th:block>
     </div>

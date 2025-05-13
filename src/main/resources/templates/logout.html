@@ -5,20 +5,23 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body class="todoroo-body">
-
+<style th:nonce="${nonceStyle}">
+    .padding20 {padding: 20px;}
+    .paddingLeft10 {padding: 10px;}
+</style>
 <div class="login-page">
     <div class="login-box">
         <div class="login-roo">
-            <div style="padding: 20px;">
+            <div class="padding20">
                 <!--            <form th:action="@{/logout}" method="post">-->
                 <form action="/logout" method="post">
-                    <h4 style="padding-left: 10px;">You sure you wannna logout?</h4>
+                    <h4 class="padding10">You sure you wannna logout?</h4>
                     <button type="submit">
                         Logout
                     </button>
                 </form>
                 <div class="register-btn">
-                    <form th:action="@{index}" method="get">
+                    <form th:action="@{todo}" method="get">
                         <button type="submit">
                             Back
                         </button>

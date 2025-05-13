@@ -27,8 +27,10 @@ public class ToDoService {
 
     public void toggleTodo(long todo) {
         Todo founndTodo = repo.findById(todo).get();
-        founndTodo.setDone(!founndTodo.isDone());
-        repo.save(founndTodo);
+        if (founndTodo != null) {
+            founndTodo.setDone(!founndTodo.isDone());
+            repo.save(founndTodo);
+        }
     }
 
     public void save(Todo todo) {
@@ -44,5 +46,11 @@ public class ToDoService {
 
     public Todo loadTodo(int todo) {
         return repo.findById(Long.valueOf(todo)).get();
+    }
+
+    public void delete(long todo) {
+        Todo founndTodo = repo.findById(todo).get();
+        if (founndTodo != null && founndTodo.isDone())
+            repo.delete(founndTodo);
     }
 }

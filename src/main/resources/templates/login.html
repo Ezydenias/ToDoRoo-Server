@@ -5,27 +5,44 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 <!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self';  script-src  'self' 'nonce-static' localhost:8080">-->
 </head>
-<body  nonce="static" class="todoroo-body" onload="test3()">
-<script language="text/javascript" nonce="static">function test3(){console.log("this should work")}</script>
+<!--<body  nonce="static" class="todoroo-body" id="myBody" onload="test_good()">-->
+<body id="myBody" class="todoroo-body">
+<style th:nonce="${nonceStyle}">
+    .padding20 {padding: 20px;}
+    .paddingLeft10 {padding: 10px;}
+    .margintop83 {margin-top: -83px;}
+</style>
+<script th:nonce="${nonce}">
+    var body = document.getElementsByTagName("body")[0];
+
+body.addEventListener("load", test_good(), false);
+
+function test_good(){console.log("this should work")}</script>
 <!--<body class="todoroo-body" >-->
-<script>function test(){console.log("this shouldn't work")}</script>
+<script>
+    var body = document.getElementsByTagName("body")[0];
+    
+    body.addEventListener("load", test(), false);
+    
+    function test(){console.log("this shouldn't work")}</script>
 <!--<script language="javascript" th:nonce="${nonce}">function test2(){console.log("this should work")}</script>-->
-<h2 th:nonce="${nonce}" th:text="${nonce}" align="center"></h2>
+<!--<h2 th:nonce="${nonce}" th:text="${nonce}" align="center"></h2>-->
+<!--<h2 th:nonce="${nonceStyle}" th:text="${nonceStyle}" align="center"></h2>-->
 <div class="login-page">
     <div class="login-box">
         <div class="login-roo">
 
-            <div style="padding: 20px;">
+            <div class="padding20">
                 <h1 class="todoroo-header">G'Day to ToDo-Roo!</h1>
 
                 <form th:action="@{login}" method="post">
 
-                    <h4 style="padding-left: 10px;">Sign into to remember like a Wallaroo!.</h4>
-                    <div style="padding-left: 10px;" th:if="${param.error}" class="alert alert-error">Invalid username
+                    <h4 class="padding10">Sign into to remember like a Wallaroo!.</h4>
+                    <div  th:if="${param.error}" class="alert alert-error padding10">Invalid username
                         or
                         password.
                     </div>
-                    <div style="padding-left: 10px;" th:if="${param.logout}" class="alert alert-success">You have been
+                    <div th:if="${param.logout}" class="alert alert-success padding10">You have been
                         logged out.
                     </div>
                     <div class="login-inputfield">
@@ -38,14 +55,15 @@
                                placeholder="Password">
                     </div>
 
-                    <div style="display: flex">
-                        <div style="flex: 1;">
+<!--                    <div class="flex">-->
+<!--                        <div class="flex1">-->
+                        <div>
                             <button type="submit" value="LogIn">Login</button>
                         </div>
 
-                    </div>
+<!--                    </div>-->
                 </form>
-                <div class="register-btn">
+                <div class="register-btn margintop83">
                     <form th:action="@{registerPage}" method="get">
                         <button type="submit">
                             Register

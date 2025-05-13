@@ -5,19 +5,22 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body class="todoroo-body">
-
+<style th:nonce="${nonceStyle}">
+    .padding20 {padding: 20px;}
+    .paddingLeft10 {padding: 10px;}
+</style>
 <div class="login-page">
     <div class="login-box">
         <div class="login-roo">
 
-            <div style="padding: 20px;">
+            <div class="padding20">
                 <h1 class="todoroo-header">Register to ToDo-Roo!</h1>
 
                 <form th:action="@{/register}" method="post" th:object="${User}">
 
-                    <h4 style="padding-left: 10px;">Begin to remember like a Wallaroo!.</h4>
+                    <h4 class="padding10">Begin to remember like a Wallaroo!.</h4>
 
-                    <div style="padding-left: 10px;" th:if="${errorMessage != null}" th:text=${errorMessage} class="alert-error">
+                    <div th:if="${errorMessage != null}" th:text=${errorMessage} class="alert-error padding10">
                     </div>
 
                     <div class="login-inputfield">

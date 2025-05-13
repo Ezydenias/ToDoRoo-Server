@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.Roo.demo.validators.RooEmailValidator.isValidEmail;
@@ -32,16 +33,17 @@ public class UserService {
     @Value("${pepper}")
     private String pepper;
 
-    String regExpn = "^(?=.*[0-9])(?=.*\\d):(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\\S+$)";
-    String regExpnLenngth = "^{8,}$";
-    
+//    String regExpn = "/^(?=.*[0-9])$/";
+        String regExpn = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])";
+    String regExpnLenngth = "^{8,}";
+
     private Pbkdf2PasswordEncoder encoder;
 
     @PostConstruct
-    private void InitializeEncoder(){
-        encoder = new Pbkdf2PasswordEncoder(pepper,5,2000,256);
+    private void InitializeEncoder() {
+        encoder = new Pbkdf2PasswordEncoder(pepper, 5, 2000, 256);
     }
-    
+
     public User register(UserRegister user) throws Exception {
         if (user.getUsername().isEmpty())
             throw new RegisterException("Please Provide a username");
@@ -57,13 +59,16 @@ public class UserService {
         if (!isValidEmail(user.getEmail()))
             throw new RegisterException("Invalid E-mail address");
 
-        if(!Pattern.compile(regExpnLenngth, Pattern.CASE_INSENSITIVE).matcher(user.getPassword()).matches())
-            throw new RegisterException("Password needs to be at least 8 symbols long");        
-        if(!Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE).matcher(user.getPassword()).matches())
-            throw new RegisterException("Needs at least one special character, a Number and Letter");
+        if (user.getPassword().length() < 8)
+            throw new RegisterException("Password needs to be at least 8 symbols long");
+
+        Pattern stringPattern = Pattern.compile(regExpn);
+        Matcher m = stringPattern.matcher(user.getPassword());
+        if (!m.find())
+            throw new RegisterException("Needs at least one special character, a Number and a Letter");
 
         user.setId(repo.getMaxId() + 1);
-        
+
         user.setPassword(encoder.encode(user.getPassword()));
 
         if (user.getId() == 0)

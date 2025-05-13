@@ -3,12 +3,18 @@
 <head>
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
-
+<style th:nonce="${nonceStyle}">
+    .padding20 {padding: 20px;}
+    .paddingLeft10 {padding: 10px;}
+    .displayflex {display: flex;}
+    h1 {flex: auto; margin:0px;}
+    .rubyflexblock {flex:auto; display: block ruby;}
+</style>
 <label class="todo-roo-header" th:fragment="header">
-    <div style="display: flex">
-        <h1 style="flex: auto; margin:0px;">Your Memory!</h1>
+    <div class="displayflex">
+        <h1 >Your Memory!</h1>
 
-        <div style="flex:auto; display: block ruby;">
+        <div class="rubyflexblock">
             <form th:action="@{createTodo}" method="post">
                 <button type="submit" name="todoId">Create Todo</button>
             </form>

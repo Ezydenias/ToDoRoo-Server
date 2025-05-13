@@ -3,20 +3,32 @@
 <head>
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
+<style th:nonce="${nonceStyle}">
+    .padding20 {padding: 20px;}
+    .paddingLeft10 {padding: 10px;}
+</style>
 <div th:fragment="edittodo" class="overlay">
     <div class="todo-edit-box">
         <div class="login-roo">
 
-            <div style="padding: 20px;">
+            <div class="padding20">
                 <h1 class="todoroo-header">What to Remember?!</h1>
 
                 <form th:action="@{/saveTodo}" method="post" th:object="${Todo}">
 
-
+                    <div th:text="${editedTodo.todo}">Default</div>
+                    <div th:text="${editedTodo.deadline}">Default</div>
+                    
                     <div class="todo-inputfield">
-                        <input type="text" id="todo" name="todo" class="form-control" placeholder="Todo"
-                               th:value="${editedTodo.todo}"
-                               required autofocus="autofocus">
+                        <textarea type="textarea" id="todo" name="todo" class="form-control" placeholder="Todo"
+                               th:field="${editedTodo.todo}"
+                                  required autofocus="autofocus">${editedTodo.todo}</textarea>
+                    </div>
+                    
+                    <div class="todo-inputfield">
+                        <input type="date" id="deadline" name="deadline" class="form-control" placeholder="Deadline"
+                               th:field="${editedTodo.deadline}"
+                                  required autofocus="autofocus">
                     </div>
 
                     <div>

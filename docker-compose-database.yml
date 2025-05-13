@@ -1,0 +1,21 @@
+﻿services:
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - 3307:3306
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=Password
+      - MARIADB_MYSQL_LOCALHOST_USER=ToDo
+      - MYSQL_USER=ToDoRoo
+      - MYSQL_PASSWORD=Password
+      - MARIADB_DATABASE=todoroo
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD= true
+      - MARIADB_MYSQL_LOCALHOST_USER= true
+    networks:
+      database: {}
+
+networks:
+  database:
+    external: true

@@ -1,6 +1,13 @@
-﻿version: '3.1'
+﻿services:
+  todo-roo-app-2:
+    build: .
+    image: todo-roo:v2
+    ports:
+      - 8091:8080
+      - "127.0.0.1:3306:3307"
+    networks:
+      database: {}
 
-services:
-  
-  db:
-    image: 
+networks:
+  database:
+    external: true

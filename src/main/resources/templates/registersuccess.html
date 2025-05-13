@@ -5,11 +5,14 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body class="todoroo-body">
-
+<style th:nonce="${nonceStyle}">
+    .padding20 {padding: 20px;}
+    .paddingLeft10 {padding: 10px;}
+</style>
 <div class="login-page">
     <div class="login-box">
         <div class="login-roo">
-            <div style="padding: 20px;">
+            <div class="padding20">
                 <form action="/login" method="post">
                     <h4 style="padding-left: 10px;">Registration Successfully?</h4>
                     <button type="submit">
