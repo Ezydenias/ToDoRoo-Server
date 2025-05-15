@@ -9,6 +9,7 @@ node {
                 def customImage = docker.build("my-image:${env.BUILD_ID}")
                 customImage.push()
             }
+            
         }
 //     sh docker build -t todo-roo:v3 .
     }
