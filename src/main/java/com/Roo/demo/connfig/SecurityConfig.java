@@ -5,6 +5,7 @@ import com.Roo.demo.filter.IFrameFilter;
 import com.Roo.demo.filter.JwtFilter;
 import com.Roo.demo.handler.LoginSucessHandler;
 //import com.Roo.demo.manager.CustomAuthenticationManager;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -81,5 +82,10 @@ public class SecurityConfig {
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }

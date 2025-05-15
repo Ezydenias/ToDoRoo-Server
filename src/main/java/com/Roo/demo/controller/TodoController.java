@@ -1,5 +1,6 @@
 package com.Roo.demo.controller;
 
+import com.Roo.demo.dto.TodoDto;
 import com.Roo.demo.models.Todo;
 import com.Roo.demo.service.ToDoService;
 import org.slf4j.Logger;
@@ -66,7 +67,7 @@ public class TodoController {
     public ModelAndView createTodo(Model model) {
         var view = todo(model);
         model.addAttribute("edit", true);
-        model.addAttribute("editedTodo", new Todo());
+        model.addAttribute("editedTodo", new TodoDto());
         return view;
     }
 

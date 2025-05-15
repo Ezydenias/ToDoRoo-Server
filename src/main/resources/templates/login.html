@@ -7,6 +7,8 @@
 </head>
 <!--<body  nonce="static" class="todoroo-body" id="myBody" onload="test_good()">-->
 <body id="myBody" class="todoroo-body">
+
+
 <style th:nonce="${nonceStyle}">
     .padding20 {padding: 20px;}
     .paddingLeft10 {padding: 10px;}
@@ -28,6 +30,14 @@ function test_good(){console.log("this should work")}</script>
 <!--<script language="javascript" th:nonce="${nonce}">function test2(){console.log("this should work")}</script>-->
 <!--<h2 th:nonce="${nonce}" th:text="${nonce}" align="center"></h2>-->
 <!--<h2 th:nonce="${nonceStyle}" th:text="${nonceStyle}" align="center"></h2>-->
+
+
+
+<th:block th:replace="~{fragments/background :: background}"></th:block>
+
+
+
+
 <div class="login-page">
     <div class="login-box">
         <div class="login-roo">

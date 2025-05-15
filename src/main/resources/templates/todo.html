@@ -5,6 +5,8 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body class="todoroo-body">
+
+
 <style th:nonce="${nonceStyle}">
     .padding20 {padding: 20px;}
     .padding10 {padding: 10px;}
@@ -16,6 +18,7 @@
     .minheightwidth0 {min-height: 0px; min-width: 0px;}
 </style>
 
+<th:block th:replace="~{fragments/background :: background}"></th:block>
 <th:block th:replace="~{fragments/header :: header}"></th:block>
 
 <div class="grid-todo">

@@ -2,7 +2,7 @@ package com.Roo.demo.service;
 
 import com.Roo.demo.exceptions.RegisterException;
 import com.Roo.demo.models.User;
-import com.Roo.demo.models.UserRegister;
+import com.Roo.demo.dto.UserRegisterDto;
 import com.Roo.demo.repo.UserRepo;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class UserService {
         encoder = new Pbkdf2PasswordEncoder(pepper, 5, 2000, 256);
     }
 
-    public User register(UserRegister user) throws Exception {
+    public User register(UserRegisterDto user) throws Exception {
         if (user.getUsername().isEmpty())
             throw new RegisterException("Please Provide a username");
         if (user.getPassword().isEmpty())

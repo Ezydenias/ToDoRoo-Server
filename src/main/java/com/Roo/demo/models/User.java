@@ -1,5 +1,6 @@
 package com.Roo.demo.models;
 
+import com.Roo.demo.dto.UserRegisterDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class User {
     private String password;
     private String email;
 
-    public User(UserRegister user) {
+    public User(UserRegisterDto user) {
         id = user.getId();
         username = user.getUsername();
         password = user.getPassword();

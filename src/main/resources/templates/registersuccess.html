@@ -5,10 +5,13 @@
     <link th:href="@{/main.css}" rel="stylesheet"/>
 </head>
 <body class="todoroo-body">
+
+
 <style th:nonce="${nonceStyle}">
     .padding20 {padding: 20px;}
     .paddingLeft10 {padding: 10px;}
 </style>
+<th:block th:replace="~{fragments/background :: background}"></th:block>
 <div class="login-page">
     <div class="login-box">
         <div class="login-roo">

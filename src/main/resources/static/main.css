@@ -25,13 +25,106 @@ button{
   left: 0;
   height: 100%;
   width: 100%;
+    animation: rotate-bg-color 30s infinite;
   background-color: #fffcf3;
-  background-image: url("/imgs/grass.svg"), url("/imgs/palm-left.svg"), url("/imgs/palm-right.svg");
+  
   background-size: cover;
   background-size: auto, cover, cover;
   background-repeat: repeat-x, no-repeat, no-repeat;
   background-position:  bottom;
 }
+
+.background-image
+{
+    width: 100%;
+  height: 100%;
+  position: absolute;
+  background-position: bottom;
+}
+
+.gras {
+  background-size: auto;
+  background-repeat: repeat-x;
+    background-image: url("/imgs/grass.svg");
+}
+
+.left-palm{
+  animation: sheer-leftPalm 4s infinite ease-in-out;
+      background-size: cover;
+      background-repeat: no-repeat;
+    background-image:  url("/imgs/palm-left.svg");
+}
+
+.right-palm{
+  background-size: cover;
+  background-repeat: no-repeat;
+background-image: url("/imgs/palm-right.svg");
+}
+.nothing{
+  animation: sheer-rightPalm 4s infinite ease-in-out;
+}
+@keyframes rotate-bg-color {
+  0% {
+    background-color: #fffcf3;
+  }
+  30% {
+    background-color: #faf3de;
+  }
+  70% {
+    background-color: #faf3de;
+  }
+  }
+  
+  /* Animations */
+  @keyframes swing {
+  	0% {
+  		transform: rotate(-10deg);
+  	}
+  	50% {
+  		transform: rotate(10deg);
+  	}
+  	100% {
+  		transform: rotate(-10deg);
+  	}
+  } 
+   
+   /* Animations */
+  @keyframes sheer {
+  	0% {
+  		transform: skew(10deg, 0deg);
+  	}
+  	50% {
+  		transform: skew(-10deg, 0deg);
+  	}
+  	100% {
+  		transform: skew(10deg, 0deg);
+  	}
+  }   
+   /* Animations */
+  @keyframes sheer-leftPalm {
+  	0% {
+  		transform: matrix(1, 0, .5, 1, -20, 0);
+  	}
+  	50% {
+  		transform: matrix(1, 0, 0, 1, 0, 0);
+  	}
+  	100% {
+  		transform: matrix(1, 0, .5, 1, -20, 0);
+  	}
+  } 
+   /* Animations */
+  @keyframes sheer-rightPalm {
+  	0% {
+  		transform: matrix(1, 0, 0, 1, 0, 0);
+  	}
+  	50% {
+  		
+  		transform: matrix(1, 0, -.5, 1, 20, 0);transform: matrix(1, 0, -.5, 1, 20, 0);
+  	}
+  	100% {
+  		transform: matrix(1, 0, 0, 1, 0, 0);
+  	}
+  }
 
 .login-page {
   display: table-cell;
@@ -39,6 +132,7 @@ button{
 }
 
 .login-box{
+  animation: swing 4s infinite ease-in-out;
 background-color: #fffcf3;
   width: 400px;
   border-radius:  10px;
@@ -163,6 +257,7 @@ button:disabled{
 }
 
 button:active{
+  animation: swing 1s infinite ease-in-out;
   color:whitesmoke;
   background-image: linear-gradient(180deg, #bbbbbb,#bbbbbb,#bbbbbb,#7a7a7a,#424242);
 }

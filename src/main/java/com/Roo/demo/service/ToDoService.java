@@ -1,15 +1,19 @@
 package com.Roo.demo.service;
 
+import com.Roo.demo.dto.TodoDto;
 import com.Roo.demo.models.Todo;
 import com.Roo.demo.models.UserPrincipal;
 import com.Roo.demo.repo.TodoRepo;
 import com.Roo.demo.repo.UserRepo;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -21,8 +25,24 @@ public class ToDoService {
     @Autowired
     private UserRepo userRepo;
 
-    public List<Todo> loadTodos() {
-        return repo.findByUserId(getCurrentUserId());
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public List<TodoDto> loadTodos() {
+        return convertToDto(repo.findByUserId(getCurrentUserId()));
+    }
+
+    private List<TodoDto> convertToDto(List<Todo> todos) {
+        List<TodoDto> todoDtos = new ArrayList<>();
+
+        for (int i = 0; i < todos.stream().count(); i++) {
+            var temp = todos.get(i);
+            var temp2 = modelMapper.map(todos.get(i), TodoDto.class);
+            todoDtos.add(modelMapper.map(todos.get(i), TodoDto.class));
+
+        }
+        
+        return todoDtos;
     }
 
     public void toggleTodo(long todo) {

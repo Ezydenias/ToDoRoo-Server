@@ -2,9 +2,10 @@ package com.Roo.demo.controller;
 
 import com.Roo.demo.exceptions.RegisterException;
 import com.Roo.demo.models.User;
-import com.Roo.demo.models.UserRegister;
+import com.Roo.demo.dto.UserRegisterDto;
 import com.Roo.demo.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,18 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     Logger logger = LoggerFactory.getLogger(UserController.class);
 
     private void SetNonce(Model model, HttpServletRequest request) {
-        model.addAttribute("nonce", request.getAttribute("nonce"));
-        model.addAttribute("nonceStyle", request.getAttribute("nonceStyle"));
+//        model.addAttribute("nonce", request.getAttribute("nonce"));
+//        model.addAttribute("nonceStyle", request.getAttribute("nonceStyle"));
     }
     
     @PostMapping(value = "/register")
-    public ModelAndView register(@ModelAttribute UserRegister user, Model model, HttpServletRequest request) throws Exception {
+    public ModelAndView register(@ModelAttribute UserRegisterDto user, Model model, HttpServletRequest request) throws Exception {
         try {
         service.register(user);
         }catch (RegisterException e){
