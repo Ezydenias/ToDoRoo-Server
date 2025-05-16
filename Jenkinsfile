@@ -20,6 +20,7 @@ pipeline {
     {
         steps {
             echo 'Starting to build docker image'
+            echo 'this is agent change'
             sh docker build -t todo-roo:v3 .     
 
         }
