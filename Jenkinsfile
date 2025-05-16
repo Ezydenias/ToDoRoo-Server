@@ -7,9 +7,10 @@ pipeline {
             }
         }
         stage('Test') { 
-//             steps {
+            steps {
+                    echo 'imagine some epic testing!.'
 //                 sh 'mvn test' 
-//             }
+            }
 //             post {
 //                 always {
 //                     junit 'target/surefire-reports/*.xml' 
