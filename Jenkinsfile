@@ -16,15 +16,15 @@ pipeline {
 //                 }
 //             }
         }
-    stage ('Build Docker File')
-    {
-        steps {
-            echo 'Starting to build docker image'
-            echo 'this is agent change'
-            sh docker build -t todo-roo:v3 .     
-
+        stage ('Build Docker File')
+        {
+            steps {
+                echo 'Starting to build docker image'
+                echo 'this is agent change'
+                sh 'docker build -t todo-roo:v3 .'     
+    
+            }
+    //     sh docker build -t todo-roo:v3 .
         }
-//     sh docker build -t todo-roo:v3 .
-    }
     }
 }
