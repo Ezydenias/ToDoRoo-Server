@@ -23,7 +23,9 @@ pipeline {
                 echo 'Starting to build docker image'
                 echo 'this is agent change'
                 sh 'docker build -t todo-roo:v3 .'     
-    
+                sh 'docker save todo-roo > todo-roo.tar'
+//                 sh 'scp todo-roo.tar'
+//                 sh 'docker cp local-jenkins-aio2-jenkins-1:/todo-roo.tar .'
             }
     //     sh docker build -t todo-roo:v3 .
         }
