@@ -6,6 +6,22 @@ pipeline {
                 sh 'mvn clean install -DskipTests -Dspring.profiles.active=docker' 
             }
         }
+        stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'Cube'
+            }
+            steps {
+                withSonarQubeEnv('Cube') { // You can override the credential to be used
+                        sh '''
+                        echo "Starte SonarQube-Analyse..."
+                        mvn sonar:sonar -X \
+                            -Dsonar.projectKey=todo-roo \
+                            -Dsonar.projectName='todo-roo'
+                        echo "SonarQube Analyse abgeschlossen."
+                        '''
+                }
+            }
+        }
         stage('Test') { 
             steps {
                     echo 'imagine some epic testing!.'
