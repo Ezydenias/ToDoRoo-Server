@@ -6,6 +6,27 @@ pipeline {
                 sh 'mvn clean install -DskipTests -Dspring.profiles.active=docker' 
             }
         }
+        stage('Test') { 
+            steps {
+                    echo 'imagine some epic testing!.'
+//                 sh 'mvn test' 
+            }
+//             post {
+//                 always {
+//                     junit 'target/surefire-reports/*.xml' 
+//                 }
+//             }
+            steps {
+                script {
+                    sh '''
+                    echo "Starte Unit-Tests mit Maven..."
+                    mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report -Dproject.build.sourceEncoding=UTF-8
+ 
+                    echo "Tests abgeschlossen."
+                    '''
+                    }
+                }
+        }
         stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'Cube'
@@ -23,17 +44,6 @@ pipeline {
                     }
                 }
             }
-        }
-        stage('Test') { 
-            steps {
-                    echo 'imagine some epic testing!.'
-//                 sh 'mvn test' 
-            }
-//             post {
-//                 always {
-//                     junit 'target/surefire-reports/*.xml' 
-//                 }
-//             }
         }
         stage ('Build Docker File')
         {
