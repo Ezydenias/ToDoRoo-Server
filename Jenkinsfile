@@ -10,19 +10,20 @@ pipeline {
             steps {
                     echo 'imagine some epic testing!.'
 //                 sh 'mvn test' 
-            }
+            
 //             post {
 //                 always {
 //                     junit 'target/surefire-reports/*.xml' 
 //                 }
 //             }
-//             script {
-//                 sh '''
-//                 echo "Starte Unit-Tests mit Maven..."
-//                 mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report -Dproject.build.sourceEncoding=UTF-8
-//                 echo "Tests abgeschlossen."
-//                 '''
-//                 }
+            script {
+                sh '''
+                echo "Starte Unit-Tests mit Maven..."
+                mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report -Dproject.build.sourceEncoding=UTF-8
+                echo "Tests abgeschlossen."
+                '''
+                }
+            }
         }
         stage('SonarQube analysis') {
             environment {
