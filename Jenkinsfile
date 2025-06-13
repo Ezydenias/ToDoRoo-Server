@@ -16,15 +16,12 @@ pipeline {
 //                     junit 'target/surefire-reports/*.xml' 
 //                 }
 //             }
-            steps {
-                script {
-                    sh '''
-                    echo "Starte Unit-Tests mit Maven..."
-                    mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report -Dproject.build.sourceEncoding=UTF-8
- 
-                    echo "Tests abgeschlossen."
-                    '''
-                    }
+            script {
+                sh '''
+                echo "Starte Unit-Tests mit Maven..."
+                mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report -Dproject.build.sourceEncoding=UTF-8
+                echo "Tests abgeschlossen."
+                '''
                 }
         }
         stage('SonarQube analysis') {
