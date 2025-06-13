@@ -11,14 +11,16 @@ pipeline {
                 scannerHome = tool 'Cube'
             }
             steps {
-                withSonarQubeEnv('Cube') { // You can override the credential to be used
-                        sh '''
-                        echo "Starte SonarQube-Analyse..."
-                        mvn sonar:sonar -X \
-                            -Dsonar.projectKey=todo-roo \
-                            -Dsonar.projectName='todo-roo'
-                        echo "SonarQube Analyse abgeschlossen."
-                        '''
+                script {
+                    withSonarQubeEnv('Cube') { // You can override the credential to be used
+                            sh '''
+                            echo "Starte SonarQube-Analyse..."
+                            mvn sonar:sonar -X \
+                                -Dsonar.projectKey=todo-roo \
+                                -Dsonar.projectName='todo-roo'
+                            echo "SonarQube Analyse abgeschlossen."
+                            '''
+                    }
                 }
             }
         }
