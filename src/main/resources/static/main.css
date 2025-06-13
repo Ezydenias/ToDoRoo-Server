@@ -49,7 +49,6 @@ button{
 }
 
 .left-palm{
-  animation: sheer-leftPalm 4s infinite ease-in-out;
       background-size: cover;
       background-repeat: no-repeat;
     background-image:  url("/imgs/palm-left.svg");

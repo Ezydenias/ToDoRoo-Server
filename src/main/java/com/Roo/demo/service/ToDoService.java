@@ -23,13 +23,16 @@ public class ToDoService {
     private TodoRepo repo;
 
     @Autowired
+    private AuthentificationService authentification;
+
+    @Autowired
     private UserRepo userRepo;
 
     @Autowired
     private ModelMapper modelMapper;
 
     public List<TodoDto> loadTodos() {
-        return convertToDto(repo.findByUserId(getCurrentUserId()));
+        return convertToDto(repo.findByUserId(authentification.getCurrentUserId()));
     }
 
     private List<TodoDto> convertToDto(List<Todo> todos) {
@@ -56,13 +59,11 @@ public class ToDoService {
     public void save(Todo todo) {
         if (todo.getId() == 0)
             todo.setId(repo.getMaxId() + 1);
-        todo.setUser(userRepo.getReferenceById(getCurrentUserId()));
+        todo.setUser(userRepo.getReferenceById(authentification.getCurrentUserId()));
         repo.save(todo);
     }
 
-    private int getCurrentUserId() {
-        return ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-    }
+
 
     public Todo loadTodo(int todo) {
         return repo.findById(Long.valueOf(todo)).get();
