@@ -10,12 +10,38 @@ pipeline {
             steps {
                     echo 'imagine some epic testing!.'
 //                 sh 'mvn test' 
-            }
+            
 //             post {
 //                 always {
 //                     junit 'target/surefire-reports/*.xml' 
 //                 }
 //             }
+            script {
+                sh '''
+                echo "Starte Unit-Tests mit Maven..."
+                mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent test jacoco:report -Dproject.build.sourceEncoding=UTF-8
+                echo "Tests abgeschlossen."
+                '''
+                }
+            }
+        }
+        stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'Cube'
+            }
+            steps {
+                script {
+                    withSonarQubeEnv('Cube') { // You can override the credential to be used
+                            sh '''
+                            echo "Starte SonarQube-Analyse..."
+                            mvn sonar:sonar -X \
+                                -Dsonar.projectKey=todo-roo \
+                                -Dsonar.projectName='todo-roo'
+                            echo "SonarQube Analyse abgeschlossen."
+                            '''
+                    }
+                }
+            }
         }
         stage ('Build Docker File')
         {
