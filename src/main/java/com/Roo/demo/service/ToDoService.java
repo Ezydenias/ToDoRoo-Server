@@ -63,8 +63,6 @@ public class ToDoService {
         repo.save(todo);
     }
 
-
-
     public Todo loadTodo(int todo) {
         return repo.findById(Long.valueOf(todo)).get();
     }

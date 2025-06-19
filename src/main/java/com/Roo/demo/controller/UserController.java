@@ -28,26 +28,6 @@ public class UserController {
 //        model.addAttribute("nonce", request.getAttribute("nonce"));
 //        model.addAttribute("nonceStyle", request.getAttribute("nonceStyle"));
     }
-    
-    @PostMapping(value = "/register")
-    public ModelAndView register(@ModelAttribute UserRegisterDto user, Model model, HttpServletRequest request) throws Exception {
-        try {
-        service.register(user);
-        }catch (RegisterException e){
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("register.html");
-            model.addAttribute("errorMessage", e.getMessage());
-            SetNonce(model, request);
-            return modelAndView;
-        }
-        
-        return registerSuccess(model, request);
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestBody User user){
-        return service.verify(user);
-    }
 
     @GetMapping("/login")
     public ModelAndView login(Model model, HttpServletRequest request) {
@@ -55,6 +35,26 @@ public class UserController {
         modelAndView.setViewName("login.html");
         SetNonce(model, request);
         return modelAndView;
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody User user){
+        return service.verify(user);
+    }
+
+    @PostMapping(value = "/register")
+    public ModelAndView register(@ModelAttribute UserRegisterDto user, Model model, HttpServletRequest request) throws Exception {
+        try {
+            service.register(user);
+        }catch (RegisterException e){
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("register.html");
+            model.addAttribute("errorMessage", e.getMessage());
+            SetNonce(model, request);
+            return modelAndView;
+        }
+
+        return registerSuccess(model, request);
     }
 
     @GetMapping("/logoutPage")
